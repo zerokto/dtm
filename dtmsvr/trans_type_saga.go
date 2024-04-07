@@ -15,7 +15,7 @@ type transSagaProcessor struct {
 }
 
 func init() {
-	registorProcessorCreator("saga", func(trans *TransGlobal) transProcessor {
+	registerProcessorCreator("saga", func(trans *TransGlobal) transProcessor {
 		return &transSagaProcessor{TransGlobal: trans}
 	})
 }

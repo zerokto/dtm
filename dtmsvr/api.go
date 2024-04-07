@@ -87,6 +87,8 @@ func svcForceStop(t *TransGlobal) interface{} {
 }
 
 func svcRegisterBranch(transType string, branch *TransBranch, data map[string]string) error {
+	// 注册分支
+	// 两个分支，分别是cancel和commit
 	branches := []TransBranch{*branch, *branch}
 	if transType == "tcc" {
 		for i, b := range []string{dtmimp.OpCancel, dtmimp.OpConfirm} {

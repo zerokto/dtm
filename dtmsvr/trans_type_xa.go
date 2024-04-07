@@ -12,7 +12,7 @@ type transXaProcessor struct {
 }
 
 func init() {
-	registorProcessorCreator("xa", func(trans *TransGlobal) transProcessor { return &transXaProcessor{TransGlobal: trans} })
+	registerProcessorCreator("xa", func(trans *TransGlobal) transProcessor { return &transXaProcessor{TransGlobal: trans} })
 }
 
 func (t *transXaProcessor) GenBranches() []TransBranch {
@@ -23,6 +23,7 @@ func (t *transXaProcessor) ProcessOnce(branches []TransBranch) error {
 	if !t.needProcess() {
 		return nil
 	}
+	// 超时
 	if t.Status == dtmcli.StatusPrepared && t.isTimeout() {
 		t.changeStatus(dtmcli.StatusAborting, withRollbackReason(fmt.Sprintf("Timeout after %d seconds", t.TimeoutToFail)))
 	}

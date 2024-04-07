@@ -21,7 +21,7 @@ type transMsgProcessor struct {
 }
 
 func init() {
-	registorProcessorCreator("msg", func(trans *TransGlobal) transProcessor { return &transMsgProcessor{TransGlobal: trans} })
+	registerProcessorCreator("msg", func(trans *TransGlobal) transProcessor { return &transMsgProcessor{TransGlobal: trans} })
 }
 
 func (t *transMsgProcessor) GenBranches() []TransBranch {

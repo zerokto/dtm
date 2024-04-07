@@ -38,6 +38,7 @@ func TccGlobalTransaction2(dtm string, gid string, custom func(*Tcc), tccFunc Tc
 	if rerr != nil {
 		return rerr
 	}
+
 	defer dtmimp.DeferDo(&rerr, func() error {
 		return dtmimp.TransCallDtm(&tcc.TransBase, "submit")
 	}, func() error {
@@ -71,5 +72,6 @@ func (t *Tcc) CallBranch(body interface{}, tryURL string, confirmURL string, can
 	if err != nil {
 		return nil, err
 	}
+
 	return requestBranch(&t.TransBase, "POST", body, branchID, dtmimp.OpTry, tryURL)
 }

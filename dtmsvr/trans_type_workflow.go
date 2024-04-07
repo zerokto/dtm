@@ -12,7 +12,7 @@ type transWorkflowProcessor struct {
 }
 
 func init() {
-	registorProcessorCreator("workflow", func(trans *TransGlobal) transProcessor { return &transWorkflowProcessor{TransGlobal: trans} })
+	registerProcessorCreator("workflow", func(trans *TransGlobal) transProcessor { return &transWorkflowProcessor{TransGlobal: trans} })
 }
 
 func (t *transWorkflowProcessor) GenBranches() []TransBranch {

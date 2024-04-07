@@ -278,7 +278,8 @@ func EscapeGet(qs url.Values, key string) string {
 }
 
 // InsertBarrier insert a record to barrier
-func InsertBarrier(tx DB, transType string, gid string, branchID string, op string, barrierID string, reason string, dbType string, barrierTableName string) (int64, error) {
+func InsertBarrier(tx DB, transType string, gid string, branchID string, op string, barrierID string, reason string,
+	dbType string, barrierTableName string) (int64, error) {
 	if op == "" {
 		return 0, nil
 	}

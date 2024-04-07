@@ -104,12 +104,14 @@ func TransCallDtmExt(tb *TransBase, body interface{}, operation string) (*resty.
 	if tb.Protocol == Jrpc {
 		return transCallDtmJrpc(tb, body, operation)
 	}
+
 	rc := GetRestyClient2(time.Duration(tb.RequestTimeout) * time.Second)
 	resp, err := rc.R().
 		SetBody(body).Post(fmt.Sprintf("%s/%s", tb.Dtm, operation))
 	if err != nil {
 		return nil, err
 	}
+
 	if resp.StatusCode() != http.StatusOK || strings.Contains(resp.String(), ResultFailure) {
 		return nil, errors.New(resp.String())
 	}
